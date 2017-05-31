@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- constant标签的作用：可以更改默认配置 -->
+	<!-- <constant name="struts.action.extension" value="do"/> -->
+	<!-- 启动开发者模式：自动重启 -->
+	<constant name="struts.devMode" value="true"/>
+	
+	<!-- 
+		Package称为是包，为了管理Action的配置。
+		包的作用：简化维护工作，提高重用性
+		包可以“继承”已定义的包，并可以添加自己包的配置
+	 -->
+    <package name="default" namespace="/" extends="struts-default" >
+    	<!--全局结果视图，所有Action共享 -->
+    	<global-results>
+    		<result name="success">/success.jsp</result>
+    	</global-results>
+    	<!-- 
+    		* name：name属性的值关联的请求路径，并与namespace共同决定访问路径。
+    		* class:关联HelloAction处理类
+    		* method：Action中执行的方法名。默认值是execute。
+    	 -->
+			<!-- 解耦合方式操作Servlet的API -->
+		<action name="demo1" class="com.itheima.struts.UserAction">
+			<!-- <result name="success">/success.jsp</result> -->
+		</action>
+       
+       <!-- 耦合方式操作Servlet的API -->
+       <action name="demo2" class="com.itheima.struts.User2Action">
+       		<!-- 局部结果试图 name 表示跳转到那里 type表示跳转的方式 -->
+       			<result name="success" type="dispatcher">/success.jsp</result>
+       </action>
+       
+       <!-- Strus2封装数据的属性驱动 -->
+       <action name="demo3" class="com.itheima.action.Action1">
+       		<!-- 局部结果试图 name 表示跳转到那里 type表示跳转的方式 -->
+       			<result name="success" >/success.jsp</result>
+       </action>
+        <!-- Strus2封装数据（属性驱动）的页面表达式 -->
+       <action name="demo4" class="com.itheima.action.Action2">
+       		<!-- 局部结果试图 name 表示跳转到那里 type表示跳转的方式 -->
+       			<result name="success" >/success.jsp</result>
+       </action>
+       
+         <!-- Strus2封装数据（模型驱动） -->
+       <action name="demo5" class="com.itheima.action.Action3">
+       		<!-- 局部结果试图 name 表示跳转到那里 type表示跳转的方式 -->
+       			<result name="success" >/success.jsp</result>
+       </action>
+    </package>
+   
+   
+   <!-- 引入其它配置文件 -->
+   <!-- 	<include file="user.xml"/> -->
+    
+   
+	
+  
+</struts>
